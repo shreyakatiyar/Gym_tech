@@ -16,9 +16,10 @@ export const Button = styled(Link)`
     align-items: center;
     transition: all 0.2s ease-in-out;
     text-decoration: none;
+    font-family: inherit;
 
     &:hover {
         transition: all 0.2s ease-in-out;
         background: ${({primary}) => (primary ? '#fff' : '#FF7900')};
     }
-`
+`;

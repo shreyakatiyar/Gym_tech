@@ -16,27 +16,35 @@ import {
   Text,
   FormLink,
   ErrorText,
-} from './LogInElements';
+} from '../Login/LogInElements';
 
-const LogIn = () => {
+const Signup = () => {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const { login } = useAuth();
+  const { register } = useAuth();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const redirect = searchParams.get('redirect') || '/join';
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     setError('');
-    setLoading(true);
 
-    const result = login({ email, password });
+    if (password !== confirmPassword) {
+      setError('Passwords do not match.');
+      toast.error('Passwords do not match.');
+      return;
+    }
+
+    setLoading(true);
+    const result = register({ name, email, password });
 
     if (result.success) {
-      toast.success('Welcome back!');
+      toast.success('Account created! Welcome to GymTech.');
       navigate(decodeURIComponent(redirect));
     } else {
       setError(result.error);
@@ -48,17 +56,26 @@ const LogIn = () => {
   return (
     <>
       <SEO
-        title="Log In — GymTech"
-        description="Sign in to your GymTech account to manage your membership and track your fitness journey."
-        path="/login"
+        title="Sign Up — GymTech"
+        description="Create your GymTech account and start your smart fitness journey today."
+        path="/signup"
       />
       <Container>
         <FormWrap>
           <Icon to="/">GymTech</Icon>
           <FormContent>
             <Form onSubmit={handleSubmit}>
-              <FormH1>Welcome Back</FormH1>
+              <FormH1>Create Account</FormH1>
               {error && <ErrorText>{error}</ErrorText>}
+              <FormLabel htmlFor="name">Full Name</FormLabel>
+              <FormInput
+                id="name"
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="John Doe"
+                required
+              />
               <FormLabel htmlFor="email">E-mail</FormLabel>
               <FormInput
                 id="email"
@@ -74,15 +91,25 @@ const LogIn = () => {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="••••••••"
+                placeholder="Min. 6 characters"
+                required
+                minLength={6}
+              />
+              <FormLabel htmlFor="confirmPassword">Confirm Password</FormLabel>
+              <FormInput
+                id="confirmPassword"
+                type="password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                placeholder="Repeat password"
                 required
                 minLength={6}
               />
               <FormButton type="submit" disabled={loading}>
-                {loading ? 'Signing in...' : 'Continue'}
+                {loading ? 'Creating account...' : 'Sign Up'}
               </FormButton>
               <Text>
-                Don't have an account? <FormLink to={`/signup?redirect=${encodeURIComponent(redirect)}`}>Sign up</FormLink>
+                Already have an account? <FormLink to={`/login?redirect=${encodeURIComponent(redirect)}`}>Log in</FormLink>
               </Text>
             </Form>
           </FormContent>
@@ -92,4 +119,4 @@ const LogIn = () => {
   );
 };
 
-export default LogIn;
+export default Signup;

@@ -95,6 +95,16 @@ border-radius: 4px;
 color: #fff;
 font-size: 20px;
 cursor: pointer;
+transition: background 0.2s ease;
+
+&:hover {
+    background: #e56d00;
+}
+
+&:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
 `;
 
 export const Text = styled.span`
@@ -102,7 +112,26 @@ text-align: center;
 margin-top: 24px;
 color: #fff;
 font-size: 14px;
-cursor: pointer;
+`;
+
+export const FormLink = styled(Link)`
+color: #FF7900;
+text-decoration: none;
+font-weight: 600;
+
+&:hover {
+    text-decoration: underline;
+}
+`;
+
+export const ErrorText = styled.p`
+color: #ff6b6b;
+font-size: 14px;
+text-align: center;
+margin-bottom: 16px;
+background: rgba(255, 107, 107, 0.1);
+padding: 10px;
+border-radius: 4px;
 `;
 
 /* att */

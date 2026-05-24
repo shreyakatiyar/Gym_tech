@@ -121,9 +121,23 @@ export const NavBtnLink = styled(LinkR)`
         transition: all 0.2s ease-in-out;
         background: #fff;
         color: #010606;
-        
-
-
-
     }
-`
+`;
+
+export const NavLogoutBtn = styled.button`
+    border-radius: 50px;
+    background: transparent;
+    border: 1px solid #ff6d00;
+    white-space: nowrap;
+    padding: 8px 18px;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    margin-left: 8px;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+        background: #ff6d00;
+        color: #010606;
+    }
+`;

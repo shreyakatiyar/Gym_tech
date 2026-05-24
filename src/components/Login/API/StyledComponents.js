@@ -5,7 +5,7 @@ export const Container = styled.div`
 min-height: 792px;
 bottom: 0;
 left: 0;
-right: 0;
+right: 0; 
 top: 0;
 z-index: 0;
 background: linear-gradient(225deg, #ffc93f 0, #ffba41 12.5%, #ffaa43 25%, #ff9a45 37.5%, #f98946 50%, #eb7946 62.5%, #de6b47 75%, #d15e48 87.5%, #c65449 100%);;
@@ -22,7 +22,7 @@ justify-content: center;
 }
 `;
 
-export const Icon = styled.text`
+export const Icon = styled(Link)`
 margin-left: 32px;
 margin-top: 32px;
 text-decoration: none;
@@ -127,7 +127,28 @@ font-size: 1.5rem;
 cursor: pointer;
 margin-bottom: 10px;
 margin-top: 20px;
+transition: background 0.2s ease;
+
+&:hover {
+    background: #e56d00;
+}
+
+&:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
 `
+
+export const FormSelect = styled.select`
+width: 100%;
+padding: 16px 16px;
+margin-bottom: 32px;
+border: none;
+border-radius: 4px;
+font-size: 1rem;
+background: #fff;
+cursor: pointer;
+`;
 
 export const LinkEdit = styled(Link)`
 text-decoration: none;

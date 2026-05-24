@@ -48,8 +48,8 @@ function ReqApi() {
   // const [address, setAddress] = useState('')
   // const [state, setState] = useState('')
   // const [phone, setPhone] = useState('')
-  // const [plan, setEmail] = useState('')
-  // const [email, setPlan] = useState('')
+  // const [email, setEmail] = useState('')
+  // const [plan, setPlan] = useState('')
  
  
  
@@ -213,7 +213,7 @@ return (
 
 
 }
-      <Link to='/post'><FormButtonSearch>Register</FormButtonSearch></Link>
+      <Link to='/join'><FormButtonSearch>Register</FormButtonSearch></Link>
       </FormContent>
   </FormWrap>
   </Container>

@@ -1,69 +1,124 @@
-import React from 'react';
-import Icon1 from '../../images/icon-1.svg';
-import Icon2 from '../../images/icon-2.svg';
-import Icon3 from '../../images/icon-3.svg';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+import { membershipPlans } from '../../data/membershipPlans';
+import useJoinFlow from '../../hooks/useJoinFlow';
+import AnimatedSection from '../AnimatedSection';
 import {
-    MembershipsContainer,
-    MembershipsH1,
-    MembershipsWrapper,
-    MembershipsCard,
-    MembershipsChecks,
-    MembershipsIcon,
-    MembershipsH2,
-    MembershipsP, 
-    CheckMark,
-    DollarSign
-}
-    from './MembershipsElements';
+  MembershipsContainer,
+  MembershipsH1,
+  MembershipsWrapper,
+  MembershipsCard,
+  MembershipsChecks,
+  MembershipsIcon,
+  MembershipsH2,
+  MembershipsP,
+  CheckMark,
+  DollarSign,
+  PopularBadge,
+  SelectBtn,
+  ModalOverlay,
+  ModalContent,
+  ModalClose,
+  ModalTitle,
+  ModalPrice,
+  ModalFeatures,
+  ModalActions,
+  ModalBtnPrimary,
+  ModalBtnSecondary,
+} from './MembershipsElements';
 
 const Memberships = () => {
-    return (
-        <MembershipsContainer id='memberships'>
-            <MembershipsH1>Flexible plans to fit your lifestyle</MembershipsH1>
-            <MembershipsWrapper>
+  const [selectedPlan, setSelectedPlan] = useState(null);
+  const { handleJoinClick } = useJoinFlow();
+  const navigate = useNavigate();
 
-                <MembershipsCard>
-                    <MembershipsIcon src={Icon1} />
-                    <MembershipsH2>Gold</MembershipsH2>
-                    <MembershipsChecks>
-                    <MembershipsP>< CheckMark/>22 pre-built workouts</MembershipsP>
-                    <MembershipsP>< CheckMark/>24/7 Gym access</MembershipsP>
-                    <MembershipsP>< CheckMark/>Access to 4 classes / week</MembershipsP>
-                    <MembershipsP>< CheckMark/>Access to one studio only - chosen by you</MembershipsP>
-                    </MembershipsChecks>
-                    <MembershipsH2><DollarSign />79.99</MembershipsH2>
-                </MembershipsCard>
+  const openModal = (plan) => setSelectedPlan(plan);
+  const closeModal = () => setSelectedPlan(null);
 
-                <MembershipsCard>
-                    <MembershipsIcon src={Icon2} />
-                    <MembershipsH2>Platinum</MembershipsH2>
-                    <MembershipsChecks>
-                    <MembershipsP>< CheckMark/>30 pre-built workouts</MembershipsP>
-                    <MembershipsP>< CheckMark/>24/7 Gym access</MembershipsP>
-                    <MembershipsP>< CheckMark/>Access to 8 classes / week</MembershipsP>
-                    <MembershipsP>< CheckMark/>Unlimited access to all of our studios</MembershipsP>
-                    </MembershipsChecks>
-                    <MembershipsH2><DollarSign />119.99</MembershipsH2>
-                </MembershipsCard>
+  const handleSelectPlan = () => {
+    if (selectedPlan) {
+      handleJoinClick(selectedPlan.name);
+      closeModal();
+    }
+  };
 
-                <MembershipsCard>
-                    <MembershipsIcon src={Icon3} />
-                    <MembershipsH2>Diamond</MembershipsH2>
-                    <MembershipsChecks>
-                    <MembershipsP>< CheckMark/>50 pre-built workouts</MembershipsP>
-                    <MembershipsP>< CheckMark/>24/7 Gym access</MembershipsP>
-                    <MembershipsP>< CheckMark/>Unlimited access to classes</MembershipsP>
-                    <MembershipsP>< CheckMark/>Unlimited access to all of our studios</MembershipsP>
-                    <MembershipsP>< CheckMark/>Monthly meal plan designed by our scientists</MembershipsP>
-                    <MembershipsP>< CheckMark/>1 Personal training session / Week</MembershipsP>
+  return (
+    <MembershipsContainer id="memberships">
+      <AnimatedSection>
+        <MembershipsH1>Flexible plans to fit your lifestyle</MembershipsH1>
+      </AnimatedSection>
 
-                    </MembershipsChecks>
-                    <MembershipsH2><DollarSign />199.99</MembershipsH2>
-                </MembershipsCard>
+      <MembershipsWrapper>
+        {membershipPlans.map((plan, i) => (
+          <AnimatedSection key={plan.id} delay={i * 0.15}>
+            <MembershipsCard
+              as={motion.div}
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.98 }}
+              onClick={() => openModal(plan)}
+              $popular={plan.popular}
+            >
+              {plan.popular && <PopularBadge>Most Popular</PopularBadge>}
+              <MembershipsIcon src={plan.icon} alt={`${plan.name} plan`} loading="lazy" />
+              <MembershipsH2>{plan.name}</MembershipsH2>
+              <MembershipsChecks>
+                {plan.features.map((feature) => (
+                  <MembershipsP key={feature}>
+                    <CheckMark /> {feature}
+                  </MembershipsP>
+                ))}
+              </MembershipsChecks>
+              <MembershipsH2>
+                <DollarSign />
+                {plan.price.toFixed(2)}
+              </MembershipsH2>
+              <SelectBtn>Select Plan</SelectBtn>
+            </MembershipsCard>
+          </AnimatedSection>
+        ))}
+      </MembershipsWrapper>
 
-            </MembershipsWrapper>
-        </MembershipsContainer>
-    )
-}
+      <AnimatePresence>
+        {selectedPlan && (
+          <ModalOverlay
+            as={motion.div}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={closeModal}
+          >
+            <ModalContent
+              as={motion.div}
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <ModalClose onClick={closeModal} aria-label="Close">&times;</ModalClose>
+              <ModalTitle>{selectedPlan.name} Membership</ModalTitle>
+              <ModalPrice>
+                <DollarSign />{selectedPlan.price.toFixed(2)}<span>/month</span>
+              </ModalPrice>
+              <ModalFeatures>
+                {selectedPlan.features.map((f) => (
+                  <p key={f}><CheckMark /> {f}</p>
+                ))}
+              </ModalFeatures>
+              <ModalActions>
+                <ModalBtnPrimary onClick={handleSelectPlan}>
+                  Get Started
+                </ModalBtnPrimary>
+                <ModalBtnSecondary onClick={() => { closeModal(); navigate('/about#locations'); }}>
+                  Find Nearest Gym
+                </ModalBtnSecondary>
+              </ModalActions>
+            </ModalContent>
+          </ModalOverlay>
+        )}
+      </AnimatePresence>
+    </MembershipsContainer>
+  );
+};
 
-export default Memberships
+export default Memberships;
