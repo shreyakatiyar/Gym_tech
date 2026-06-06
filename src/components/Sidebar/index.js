@@ -1,8 +1,24 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { SidebarContainer, Icon, CloseIcon, SidebarWrapper, SidebarMenu, SidebarLink, SideBtnWrap, SidebarRoute, SidebarLinkContact } from './SidebarElements';
+import { Link, useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import { useAuth } from '../../context/AuthContext';
+import {
+  SidebarContainer, Icon, CloseIcon, SidebarWrapper, SidebarMenu,
+  SidebarLink, SideBtnWrap, SidebarRoute, SidebarLinkContact,
+  SidebarLogoutBtn, SidebarUserGreet,
+} from './SidebarElements';
 
 const Sidebar = ({ isOpen, toggle }) => {
+  const { isAuthenticated, user, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    toast.success('Logged out successfully.');
+    toggle();
+    navigate('/');
+  };
+
   return (
     <SidebarContainer isOpen={isOpen} onClick={toggle}>
       <Icon onClick={toggle}>
@@ -17,7 +33,17 @@ const Sidebar = ({ isOpen, toggle }) => {
           <SidebarLinkContact to="/contact" onClick={toggle}>Contact</SidebarLinkContact>
         </SidebarMenu>
         <SideBtnWrap>
-          <SidebarRoute to="/login" onClick={toggle}>Log In</SidebarRoute>
+          {isAuthenticated ? (
+            <>
+              <SidebarUserGreet>Hi, {user?.name?.split(' ')[0]} 👋</SidebarUserGreet>
+              <SidebarLinkContact to="/join" onClick={toggle} style={{ fontSize: '0.95rem', color: '#FF7900' }}>
+                My Membership
+              </SidebarLinkContact>
+              <SidebarLogoutBtn onClick={handleLogout}>Log Out</SidebarLogoutBtn>
+            </>
+          ) : (
+            <SidebarRoute to="/login" onClick={toggle}>Log In</SidebarRoute>
+          )}
         </SideBtnWrap>
       </SidebarWrapper>
     </SidebarContainer>

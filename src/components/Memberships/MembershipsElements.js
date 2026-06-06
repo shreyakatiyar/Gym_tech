@@ -1,20 +1,16 @@
 import styled from 'styled-components';
 import { BsCheckLg, BsCurrencyDollar } from 'react-icons/bs';
 
-export const MembershipsContainer = styled.div`  
-    height: 800px;
+export const MembershipsContainer = styled.div`
+    padding: 100px 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background: #010606;
 
-    @media screen and (max-width: 1000px) {
-        height: 1800px;
-    }
-
-    @media screen and (max-width: 480px) {
-        height: 1800px;
+    @media screen and (max-width: 768px) {
+        padding: 80px 16px;
     }
 `;
 
@@ -38,24 +34,24 @@ export const MembershipsWrapper = styled.div`
 
 `;
 
-export const MembershipsCard = styled.div` 
+export const MembershipsCard = styled.div`
     background: #fff;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    border-radius: 10px;
-    height: 520px;
-    padding: 30px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-    transition: all 0.2s ease-in-out;
+    border-radius: 12px;
+    min-height: 480px;
+    padding: 32px 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+    transition: box-shadow 0.2s ease-in-out, border-color 0.2s ease;
     position: relative;
     cursor: pointer;
     border: ${({ $popular }) => ($popular ? '2px solid #FF7900' : '2px solid transparent')};
 
     &:hover {
-        transform: scale(1.02);
-        box-shadow: 0 8px 24px rgba(255, 121, 0, 0.2);
+        box-shadow: 0 8px 32px rgba(255, 121, 0, 0.25);
+        border-color: #FF7900;
     }
 `;
 export const MembershipsChecks = styled.div` 

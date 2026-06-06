@@ -17,7 +17,7 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 
-@media screen and (max-widht: 400px){
+@media screen and (max-width: 400px){
     height: 80%;
 }
 `;
@@ -77,11 +77,14 @@ color: #fff;
 `;
 
 export const FormInput = styled.input`
-width: 90%;
-padding: 16px 16px;
-margin-bottom: 32px;
+width: 100%;
+padding: 14px 16px;
+margin-bottom: 28px;
 border: none;
 border-radius: 4px;
+font-size: 1rem;
+font-family: inherit;
+box-sizing: border-box;
 `;
 
 export const FormButton = styled.button`
@@ -118,12 +121,14 @@ margin-left: 2px;
 `
 export const FormButtonSearch = styled.button`
 background: #FF7900;
-padding: 32px 0;
-width: 300px; 
+padding: 16px 0;
+width: 100%;
 border: none;
 border-radius: 4px;
 color: #fff;
-font-size: 1.5rem;
+font-size: 1.1rem;
+font-family: inherit;
+font-weight: 600;
 cursor: pointer;
 margin-bottom: 10px;
 margin-top: 20px;
@@ -152,17 +157,24 @@ cursor: pointer;
 
 export const LinkEdit = styled(Link)`
 text-decoration: none;
-text-align:center;
-background: #FF7900;
-padding: 32px 0;
-width: 300px; 
-border: none;
+text-align: center;
+background: transparent;
+border: 1px solid #FF7900;
+padding: 14px 0;
+width: 100%;
 border-radius: 4px;
-color: #fff;
-font-size: 1.5rem;
+color: #FF7900;
+font-size: 1rem;
 cursor: pointer;
 margin-bottom: 10px;
-margin-top: 20px;`
+margin-top: 8px;
+display: block;
+transition: all 0.2s ease;
+
+&:hover {
+    background: #FF7900;
+    color: #fff;
+}`
 
 export const FormEditInput = styled.div`  
     display:flex;

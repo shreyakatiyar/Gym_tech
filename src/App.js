@@ -6,6 +6,7 @@ import { Toaster } from 'react-hot-toast';
 import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import Home from './components/pages';
+import ScrollToTopBtn from './components/ScrollToTopBtn';
 
 const LoginPage = lazy(() => import('./components/pages/login'));
 const SignupPage = lazy(() => import('./components/pages/signup'));
@@ -23,6 +24,7 @@ const PageLoader = () => (
     minHeight: '60vh',
     color: '#FF7900',
     fontSize: '1.2rem',
+    background: '#010606',
   }}>
     Loading...
   </div>
@@ -65,6 +67,8 @@ function App() {
               <Route path="/*" element={<PageNotFoundPage />} />
             </Routes>
           </Suspense>
+          {/* Global scroll-to-top button — visible on all pages */}
+          <ScrollToTopBtn />
         </Router>
       </AuthProvider>
     </HelmetProvider>

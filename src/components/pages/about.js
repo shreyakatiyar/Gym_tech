@@ -5,6 +5,7 @@ import ScrollToHash from '../ScrollToHash';
 import Footer from '../Footer';
 import Sidebar from '../Sidebar';
 import Navbar from '../Navbar';
+import NewsletterSection from '../NewsletterSection';
 
 const AboutPage = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,6 +18,7 @@ const AboutPage = () => {
       <ScrollToTop />
       <ScrollToHash />
       <About />
+      <NewsletterSection />
       <Footer />
     </>
   );

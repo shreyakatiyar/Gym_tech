@@ -40,16 +40,6 @@ function ReqApi() {
     email: '',
     plano: ''
   });
-
-
-  // estados de campos
-  // const [name, setName] = useState('')
-  // const [cpf, setCpf] = useState('')
-  // const [address, setAddress] = useState('')
-  // const [state, setState] = useState('')
-  // const [phone, setPhone] = useState('')
-  // const [email, setEmail] = useState('')
-  // const [plan, setPlan] = useState('')
  
  
  
@@ -84,16 +74,6 @@ function ReqApi() {
             ...data, [name]: value,
           });
       }
-
-  // function handleChange({target: { name, value }}) {
-  //   if(name === 'name') setName(value)
-  //   if(name === 'cpf') setCpf(value)
-  //   if(name === 'adress') setAddress(value)
-  //   if(name === 'state') setState(value)
-  //   if(name === 'phone') setPhone(value)
-  //   if(name === 'email') setEmail(value)
-  //   if(name === 'plan') setPlan(value)
-  // }
 
   console.log(alunos)
 return (
@@ -213,7 +193,7 @@ return (
 
 
 }
-      <Link to='/join'><FormButtonSearch>Register</FormButtonSearch></Link>
+      <Link to='/post'><FormButtonSearch>Register</FormButtonSearch></Link>
       </FormContent>
   </FormWrap>
   </Container>
@@ -222,4 +202,4 @@ return (
     }
  
 export default ReqApi;
-/* att */
+

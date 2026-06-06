@@ -19,7 +19,7 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 
-@media screen and (max-widht: 400px){
+@media screen and (max-width: 400px){
     height: 80%;
 }
 `;

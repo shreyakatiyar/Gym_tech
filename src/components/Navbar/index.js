@@ -24,12 +24,9 @@ const Navbar = ({ toggle }) => {
   const { isAuthenticated, user, logout } = useAuth();
   const navigate = useNavigate();
 
-  const changeNav = () => {
-    setScrollNav(window.scrollY >= 80);
-  };
-
   useEffect(() => {
-    window.addEventListener('scroll', changeNav);
+    const changeNav = () => setScrollNav(window.scrollY >= 80);
+    window.addEventListener('scroll', changeNav, { passive: true });
     return () => window.removeEventListener('scroll', changeNav);
   }, []);
 

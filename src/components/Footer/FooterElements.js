@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 export const FooterContainer = styled.footer`
 background-color: #101522;
@@ -17,18 +17,22 @@ margin: 0 auto;
 
 export const FooterLinksContainer = styled.div`
 display: flex;
-justify-content: center;
+justify-content: flex-start;
+width: 100%;
 
-@media screen and (max-width: 820px){
-    padding-top: 32px;
+@media screen and (max-width: 820px) {
+    padding-top: 16px;
 }
 `;
 
 export const FooterLinksWrapper = styled.div`
 display: flex;
+flex-wrap: wrap;
+gap: 0 40px;
 
-@media screen and(max-widht: 820px){
+@media screen and (max-width: 820px) {
     flex-direction: column;
+    gap: 0;
 }
 `;
 
@@ -36,54 +40,60 @@ export const FooterLinkItems = styled.div`
 display: flex;
 flex-direction: column;
 align-items: flex-start;
-margin: 16px;
+margin: 16px 0;
 text-align: left;
 width: 160px;
 box-sizing: border-box;
 color: #fff;
 
-@media screen and (max-widht: 420px){
+@media screen and (max-width: 480px) {
     margin: 0;
-    padding: 10px;
-    widht: 100%;
+    padding: 10px 0;
+    width: 100%;
 }
 `;
 
-export const FooterLinkTitle = styled.h1`
+export const FooterLinkTitle = styled.h2`
 font-size: 14px;
+font-weight: 700;
 margin-bottom: 16px;
+color: #fff;
+text-transform: uppercase;
+letter-spacing: 1px;
 `
 
 export const FooterLink = styled(Link)`
-color: #fff;
+color: #aaa;
 text-decoration: none;
 margin-bottom: 0.5rem;
 font-size: 14px;
+transition: color 0.2s ease;
 
-&:hover{
-    color: #01bf71;
-    transition: 0.3 ease-out;
+&:hover {
+    color: #FF7900;
 }
 `;
 
-export const SocialMedia = styled.section` 
-    max-width: 1000px;
+export const SocialMedia = styled.section`
+    max-width: 1100px;
     width: 100%;
 `;
 
 export const SocialMediaWrap = styled.div`
     display: flex;
-    justify-content : space-between;
-    align-items : center;
+    justify-content: space-between;
+    align-items: center;
     max-width: 1100px;
     margin: 40px auto 0 auto;
 
-    @media screen and (max-width: 820px){ 
-    flex-direction: column;
+    @media screen and (max-width: 820px) {
+        flex-direction: column;
+        gap: 16px;
     }
 `;
+
 export const SocialLogo = styled(Link)`
-    color:#fff;
+    color: #fff;
     justify-self: start;
     cursor: pointer;
     text-decoration: none;
@@ -95,18 +105,25 @@ export const SocialLogo = styled(Link)`
 `;
 
 export const WebsiteRights = styled.small`
-    color: #fff;
+    color: #888;
     margin-bottom: 16px;
+    font-size: 13px;
 `;
 
 export const SocialIcons = styled.div`
     display: flex;
-    justify-content: space-between ;
+    justify-content: space-between;
     align-items: center;
-    width: 240px;
+    gap: 16px;
 `;
 
-export const SocialIconLink = styled.a` 
-    color: #fff;
-    font-size: 24px;
+export const SocialIconLink = styled.a`
+    color: #aaa;
+    font-size: 22px;
+    transition: color 0.2s ease, transform 0.2s ease;
+
+    &:hover {
+        color: #FF7900;
+        transform: translateY(-2px);
+    }
 `;

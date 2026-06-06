@@ -13,7 +13,9 @@ top: 0;
 z-index: 0;
 /* overflow: hidden; */
 background-image: url(${background});
-background-size: 100% 150%;
+background-size: cover;
+background-position: center;
+background-attachment: local;
 
 @media screen and (max-width: 768px) {
     background-size: cover;
@@ -27,7 +29,7 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 
-@media screen and (max-widht: 400px){
+@media screen and (max-width: 400px){
     height: 80%;
 }
 `;
@@ -103,11 +105,11 @@ export const ContactPhoto = styled.img`
     margin-bottom: 10px;
 
 `;
-export const ContactH1 = styled.h1` 
-display:flex;
+export const ContactH1 = styled.h1`
+display: flex;
 flex-direction: column;
 align-items: center;
-margin-top: 120px;
+margin-top: 80px;
     font-size: 2.8rem;
     color: #fff;
     margin-bottom: 16px;

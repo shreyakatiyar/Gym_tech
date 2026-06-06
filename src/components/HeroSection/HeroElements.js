@@ -1,9 +1,7 @@
 import styled from "styled-components";
 import { MdKeyboardArrowRight, MdArrowForward } from 'react-icons/md';
 
-
-
-export const HeroContainer = styled.div` 
+export const HeroContainer = styled.div`
     background: #0c0c0c;
     display: flex;
     justify-content: center;
@@ -12,7 +10,16 @@ export const HeroContainer = styled.div`
     height: 800px;
     position: relative;
     z-index: 1;
-    
+
+    @media screen and (max-width: 768px) {
+        height: 640px;
+    }
+
+    @media screen and (max-width: 480px) {
+        height: 100svh;
+        min-height: 520px;
+    }
+
     :before{
         content: '';
         position: absolute;
@@ -24,7 +31,8 @@ export const HeroContainer = styled.div`
         z-index: 2;
     }
 `;
-export const HeroBg = styled.div` 
+
+export const HeroBg = styled.div`
     position: absolute;
     top: 0;
     right: 0;
@@ -33,17 +41,16 @@ export const HeroBg = styled.div`
     width: 100%;
     height: 100%;
     overflow: hidden;
-    `;
+`;
 
-export const VideoBg = styled.video` 
+export const VideoBg = styled.video`
     width: 100%;
     height: 100%;
-    --o-object-fit: cover;
     object-fit: cover;
     background: #232a34;
 `;
 
-export const HeroContent = styled.div` 
+export const HeroContent = styled.div`
     z-index: 3;
     max-width: 1200px;
     position: absolute;
@@ -51,35 +58,38 @@ export const HeroContent = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    `;
+`;
 
-export const HeroH1 = styled.h1` 
+export const HeroH1 = styled.h1`
     color: #fff;
     font-size: 48px;
     text-align: center;
+    line-height: 1.2;
 
     @media screen and (max-width: 768px) {
-        font-size: 40px;
+        font-size: 38px;
     }
-    
-    @media screen and (max-width: 768px) {
-        font-size: 32px;
+
+    @media screen and (max-width: 480px) {
+        font-size: 28px;
     }
 `;
 
-export const HeroP = styled.p` 
+export const HeroP = styled.p`
     margin-top: 24px;
-    color: #fff;
-    font-size: 24px;
+    color: rgba(255,255,255,0.88);
+    font-size: 22px;
     text-align: center;
     max-width: 600px;
+    line-height: 1.6;
 
     @media screen and (max-width: 768px) {
-        font-size: 24px;
-    }
-    
-    @media screen and (max-width: 768px) {
         font-size: 18px;
+    }
+
+    @media screen and (max-width: 480px) {
+        font-size: 16px;
+        max-width: 320px;
     }
 `;
 

@@ -3,7 +3,7 @@ import { Link as LinkS } from 'react-scroll';
 import { Link as LinkR } from 'react-router-dom';
 import { FaTimes } from 'react-icons/fa';
 
-export const SidebarContainer = styled.aside` 
+export const SidebarContainer = styled.aside`
     position: fixed;
     z-index: 999;
     width: 100%;
@@ -11,12 +11,11 @@ export const SidebarContainer = styled.aside`
     background: #0d0d0d;
     display: grid;
     align-items: center;
-    top: 0;
     left: 0;
     transition: 0.3s ease-in-out;
-    opacity: ${({ isOpen }) => (isOpen ? '100%' : '0')};
+    opacity: ${({ isOpen }) => (isOpen ? '1' : '0')};
     top: ${({ isOpen }) => (isOpen ? '0' : '-100%')};
-
+    pointer-events: ${({ isOpen }) => (isOpen ? 'all' : 'none')};
 `
 export const CloseIcon = styled(FaTimes)` 
     color: #fff;
@@ -38,12 +37,11 @@ color: #fff;
 export const SidebarMenu = styled.ul`
 display: grid;
 grid-template-columns: 1fr;
-grid-template-rows: repeat(6, 80px);
+grid-template-rows: repeat(5, 72px);
 text-align: center;
 
 @media screen and (max-width: 480px){
-
-grid-template-rows: repeat(6, 60px);
+    grid-template-rows: repeat(5, 60px);
 }
 `;
 
@@ -62,7 +60,7 @@ text-decoration: none;
 
 &:hover{
     color: #ff7900;
-    transition: 0.2s esase-in-out;
+    transition: 0.2s ease-in-out;
 
 }
 `
@@ -80,24 +78,26 @@ text-decoration: none;
 
 &:hover{
     color: #ff7900;
-    transition: 0.2s esase-in-out;
+    transition: 0.2s ease-in-out;
 
 }
 `
 
 export const SideBtnWrap = styled.div`
 display: flex;
-justify-content: center;
-text-decoration: none;
+flex-direction: column;
+align-items: center;
+gap: 12px;
 `
 
 export const SidebarRoute = styled(LinkR)`
 border-radius: 50px;
 background: #ff7900;
 white-space: nowrap;
-padding: 16px 64px;
+padding: 14px 56px;
 color: #010606;
 font-size: 16px;
+font-weight: 700;
 outline: none;
 border: none;
 cursor: pointer;
@@ -105,10 +105,31 @@ transition: all 0.2s ease-in-out;
 text-decoration: none;
 
 &:hover{
-    transition: all 0.2s ease-in-out; 
     background: #fff;
     color: #010606;
-
 }
+`
 
+export const SidebarLogoutBtn = styled.button`
+border-radius: 50px;
+background: transparent;
+border: 2px solid #ff7900;
+white-space: nowrap;
+padding: 12px 48px;
+color: #ff7900;
+font-size: 16px;
+font-family: inherit;
+cursor: pointer;
+transition: all 0.2s ease-in-out;
+
+&:hover{
+    background: #ff7900;
+    color: #010606;
+}
+`
+
+export const SidebarUserGreet = styled.span`
+color: #bbb;
+font-size: 1rem;
+text-align: center;
 `
