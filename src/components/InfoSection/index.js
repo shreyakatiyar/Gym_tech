@@ -37,7 +37,7 @@ const InfoSection = ({
       <InfoWrapper>
         <InfoRow imgStart={imgStart}>
           <Column1>
-            <AnimatedSection>
+            <AnimatedSection direction={imgStart ? 'right' : 'left'}>
               <TextWrapper>
                 <TopLine>{topLine}</TopLine>
                 <Heading lightText={lightText}>{headline}</Heading>
@@ -55,7 +55,7 @@ const InfoSection = ({
             </AnimatedSection>
           </Column1>
           <Column2>
-            <AnimatedSection delay={0.2}>
+            <AnimatedSection direction={imgStart ? 'left' : 'right'} delay={0.2}>
               <ImgWrap>
                 <Img src={img} alt={alt} loading="lazy" />
               </ImgWrap>

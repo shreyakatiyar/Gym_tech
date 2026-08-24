@@ -44,10 +44,11 @@ const HeroSection = () => {
           ref={videoRef}
           loop
           muted
+          autoPlay
           playsInline
-          preload="none"
+          preload="auto"
           onLoadedData={() => setVideoLoaded(true)}
-          style={{ opacity: videoLoaded ? 1 : 0.5, transition: 'opacity 0.6s ease' }}
+          style={{ opacity: videoLoaded ? 1 : 0, transition: 'opacity 0.6s ease' }}
         >
           <source src={require('../../videos/video.mp4')} type="video/mp4" />
         </VideoBg>
@@ -58,7 +59,7 @@ const HeroSection = () => {
           custom={0}
           variants={fadeUp}
           initial="hidden"
-          animate="visible"
+          animate={videoLoaded ? 'visible' : 'hidden'}
         >
           <HeroH1>The future to build your best version</HeroH1>
         </motion.div>
@@ -67,7 +68,7 @@ const HeroSection = () => {
           custom={0.25}
           variants={fadeUp}
           initial="hidden"
-          animate="visible"
+          animate={videoLoaded ? 'visible' : 'hidden'}
         >
           <HeroP>
             Connecting your body with technology and science for results in record time
@@ -78,7 +79,7 @@ const HeroSection = () => {
           custom={0.5}
           variants={fadeUp}
           initial="hidden"
-          animate="visible"
+          animate={videoLoaded ? 'visible' : 'hidden'}
         >
           <HeroBtnWrapper>
             <JoinNowButton primary dark />

@@ -65,7 +65,7 @@ const Contact = () => {
       />
       <Container>
         <ContactWrap>
-          <AnimatedSection>
+          <AnimatedSection direction="left">
             <ContactH1>Contact Us</ContactH1>
             <SubHeading>Have a question? We'd love to hear from you.</SubHeading>
           </AnimatedSection>
@@ -76,7 +76,7 @@ const Contact = () => {
             <ContactInfoItem><FaMapMarkerAlt /> 350 5th Avenue, New York, NY</ContactInfoItem>
           </ContactInfoBar>
 
-          <AnimatedSection delay={0.1}>
+          <AnimatedSection direction="right" delay={0.1}>
             <ContactFormSection>
               <FormGrid onSubmit={handleSubmit}>
                 <FormGroup>
@@ -108,7 +108,11 @@ const Contact = () => {
 
           <ContactContainer>
             {team.map((member, i) => (
-              <AnimatedSection key={member.name} delay={i * 0.1}>
+              <AnimatedSection
+                key={member.name}
+                direction={i % 2 === 0 ? 'left' : 'right'}
+                delay={i * 0.1}
+              >
                 <ContactCard as={motion.div} whileHover={{ scale: 1.05 }}>
                   <ContactPhoto src={member.photo} alt={member.name} loading="lazy" />
                   <ContactH2>{member.name}</ContactH2>
